@@ -14,6 +14,13 @@ return [
     |
     */
 
+    'easypost' => [
+        'api_url' => env('EASYPOST_API_URL', 'https://api.easypost.com/v2/shipments'),
+        'api_key' => env('EASYPOST_API_KEY'),
+        'default_service' => env('EASYPOST_DEFAULT_SERVICE', 'Express'),
+        'carrier_accounts' => explode(',', env('EASYPOST_CARRIER_ACCOUNTS', 'ca_03d96aa2ccee4184931a24fc996e2e30')),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],
