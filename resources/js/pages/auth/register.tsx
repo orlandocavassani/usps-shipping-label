@@ -59,12 +59,116 @@ export default function Register() {
                             </div>
 
                             <div className="grid gap-2">
+                                <Label htmlFor="phone">Phone</Label>
+                                <Input
+                                    id="phone"
+                                    type="tel"
+                                    required
+                                    tabIndex={3}
+                                    autoComplete="phone"
+                                    name="phone"
+                                    placeholder="(123) 456-7890"
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(
+                                            /\D/g,
+                                            '',
+                                        );
+                                        const match = value.match(
+                                            /^(\d{0,3})(\d{0,3})(\d{0,4})$/,
+                                        );
+                                        if (match) {
+                                            e.target.value = !match[2]
+                                                ? match[1]
+                                                : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ''}`;
+                                        }
+                                    }}
+                                    maxLength={14}
+                                />
+                                <InputError message={errors.phone} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="street">Street</Label>
+                                <Input
+                                    id="street"
+                                    type="text"
+                                    required
+                                    tabIndex={4}
+                                    autoComplete="street"
+                                    name="street"
+                                    placeholder="123 Main St"
+                                />
+                                <InputError message={errors.street} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="city">City</Label>
+                                <Input
+                                    id="city"
+                                    type="text"
+                                    required
+                                    tabIndex={5}
+                                    autoComplete="city"
+                                    name="city"
+                                    placeholder="San Francisco"
+                                />
+                                <InputError message={errors.city} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="state">State</Label>
+                                <Input
+                                    id="state"
+                                    type="text"
+                                    required
+                                    tabIndex={6}
+                                    autoComplete="state"
+                                    name="state"
+                                    placeholder="CA"
+                                    maxLength={2}
+                                    className="uppercase"
+                                />
+                                <InputError message={errors.state} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="zip">Zip</Label>
+                                <Input
+                                    id="zip"
+                                    type="text"
+                                    required
+                                    tabIndex={7}
+                                    autoComplete="zip"
+                                    name="zip"
+                                    placeholder="94103"
+                                    maxLength={5}
+                                />
+                                <InputError message={errors.zip} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="country">Country</Label>
+                                <Input
+                                    id="country"
+                                    type="text"
+                                    required
+                                    tabIndex={8}
+                                    autoComplete="country"
+                                    name="country"
+                                    placeholder="US"
+                                    maxLength={2}
+                                    className="uppercase"
+                                />
+                                <InputError message={errors.country} />
+                            </div>
+
+                            <div className="grid gap-2">
                                 <Label htmlFor="password">Password</Label>
                                 <Input
                                     id="password"
                                     type="password"
                                     required
-                                    tabIndex={3}
+                                    tabIndex={9}
                                     autoComplete="new-password"
                                     name="password"
                                     placeholder="Password"
@@ -80,7 +184,7 @@ export default function Register() {
                                     id="password_confirmation"
                                     type="password"
                                     required
-                                    tabIndex={4}
+                                    tabIndex={10}
                                     autoComplete="new-password"
                                     name="password_confirmation"
                                     placeholder="Confirm password"
@@ -93,7 +197,7 @@ export default function Register() {
                             <Button
                                 type="submit"
                                 className="mt-2 w-full"
-                                tabIndex={5}
+                                tabIndex={11}
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
@@ -103,7 +207,7 @@ export default function Register() {
 
                         <div className="text-center text-sm text-muted-foreground">
                             Already have an account?{' '}
-                            <TextLink href={login()} tabIndex={6}>
+                            <TextLink href={login()} tabIndex={12}>
                                 Log in
                             </TextLink>
                         </div>

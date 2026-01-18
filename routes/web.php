@@ -5,13 +5,11 @@ use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return redirect()->route('shippings');
 })->name('home');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('shippings', function () {
+        return Inertia::render('shippings/shippings');
+    })->name('shippings');
 });
-
-require __DIR__.'/settings.php';

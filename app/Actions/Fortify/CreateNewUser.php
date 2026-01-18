@@ -28,6 +28,17 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => $input['password'],
+            'phone' => $this->getPhoneNumber($input),
+            'street' => $input['street'],
+            'city' => $input['city'],
+            'state' => mb_strtoupper($input['state']),
+            'zip' => $input['zip'],
+            'country' => mb_strtoupper($input['country']),
         ]);
+    }
+
+    private function getPhoneNumber(array $input): string
+    {
+        return preg_replace('/\D/', '', $input['phone']);
     }
 }
